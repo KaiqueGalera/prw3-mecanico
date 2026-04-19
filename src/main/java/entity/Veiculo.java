@@ -18,7 +18,8 @@ import java.time.LocalDate;
 @Table(name = "tb_veiculo")
 public class Veiculo {
     @Id
-    private Long placa;
+    private Long id;
+    private String placa;
     private String marca;
     private String modelo;
     private LocalDate ano;
