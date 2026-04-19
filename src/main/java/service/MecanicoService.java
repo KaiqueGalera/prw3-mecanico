@@ -26,7 +26,7 @@ public class MecanicoService {
     public MecanicoDTO findById(Long id) {
         Mecanico mecanico = mecanicoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Mecanico nao encontrado com id: " + id
+                        "Mecânico com ID " + id + " não foi encontrado."
                 ));
         return toDTO(mecanico);
     }
