@@ -1,11 +1,11 @@
-package controller;
+package app.controller;
 
-import dto.MecanicoDTO;
+import app.dto.MecanicoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.MecanicoService;
+import app.service.MecanicoService;
 
 import java.util.List;
 

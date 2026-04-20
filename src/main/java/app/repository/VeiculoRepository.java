@@ -1,6 +1,6 @@
-package repository;
+package app.repository;
 
-import entity.Veiculo;
+import app.entity.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {

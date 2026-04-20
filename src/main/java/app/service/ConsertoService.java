@@ -1,13 +1,11 @@
-package service;
+package app.service;
 
-import dto.ConsertoDTO;
-import dto.MecanicoDTO;
-import entity.Conserto;
-import entity.Mecanico;
+import app.dto.ConsertoDTO;
+import app.entity.Conserto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.ConsertoRepository;
+import app.repository.ConsertoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

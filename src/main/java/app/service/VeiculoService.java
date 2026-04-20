@@ -1,11 +1,11 @@
-package service;
+package app.service;
 
-import dto.VeiculoDTO;
-import entity.Veiculo;
+import app.dto.VeiculoDTO;
+import app.entity.Veiculo;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.VeiculoRepository;
+import app.repository.VeiculoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

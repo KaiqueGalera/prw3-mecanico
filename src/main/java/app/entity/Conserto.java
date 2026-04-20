@@ -1,6 +1,6 @@
-package entity;
+package app.entity;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -10,17 +10,18 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Embeddable
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_veiculo")
-public class Veiculo {
+@Table(name = "tb_conserto")
+public class Conserto {
     @Id
     private Long id;
-    private String placa;
-    private String marca;
-    private String modelo;
-    private LocalDate ano;
+    private LocalDate dataEntrada;
+    private LocalDate dataSaida;
+    @Embedded
+    private Mecanico mecanicoResposavel;
+    @Embedded
+    private Veiculo veiculo;
 }

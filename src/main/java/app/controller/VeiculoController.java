@@ -1,12 +1,11 @@
-package controller;
+package app.controller;
 
-import dto.MecanicoDTO;
-import dto.VeiculoDTO;
+import app.dto.VeiculoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.VeiculoService;
+import app.service.VeiculoService;
 
 import java.util.List;
 

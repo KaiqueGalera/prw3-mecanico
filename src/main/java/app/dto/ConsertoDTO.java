@@ -1,7 +1,7 @@
-package dto;
+package app.dto;
 
-import entity.Mecanico;
-import entity.Veiculo;
+import app.entity.Mecanico;
+import app.entity.Veiculo;
 
 import java.time.LocalDate;
 

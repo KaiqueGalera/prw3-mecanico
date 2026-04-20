@@ -1,11 +1,11 @@
-package service;
+package app.service;
 
-import dto.MecanicoDTO;
-import entity.Mecanico;
+import app.dto.MecanicoDTO;
+import app.entity.Mecanico;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.MecanicoRepository;
+import app.repository.MecanicoRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
