@@ -2,6 +2,7 @@ package entity;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tb_conserto")
 public class Conserto {
+    @Id
+    private Long id;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
     @Embedded
