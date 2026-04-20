@@ -2,6 +2,7 @@ package app.dto;
 
 import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public record VeiculoDTO(
         String placa,
@@ -9,6 +10,8 @@ public record VeiculoDTO(
         String marca,
         @NotBlank(message = "modelo do veículo é obrigatório")
         String modelo,
-        LocalDate ano
+        @Pattern(regexp = "\\d{4}")
+        String ano,
+        String cor
 ) {
 }

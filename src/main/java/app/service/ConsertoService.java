@@ -62,7 +62,8 @@ public class ConsertoService {
                 veiculo.getPlaca(),
                 veiculo.getMarca(),
                 veiculo.getModelo(),
-                veiculo.getAno()
+                veiculo.getAno(),
+                veiculo.getCor()
         );
     }
 
@@ -71,7 +72,8 @@ public class ConsertoService {
                 dto.placa(),
                 dto.marca(),
                 dto.modelo(),
-                dto.ano()
+                dto.ano(),
+                dto.cor()
         );
     }
 

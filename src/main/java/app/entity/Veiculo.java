@@ -18,5 +18,6 @@ public class Veiculo {
     private String placa;
     private String marca;
     private String modelo;
-    private LocalDate ano;
+    private String ano;
+    private String cor;
 }
