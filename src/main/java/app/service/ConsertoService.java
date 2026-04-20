@@ -1,24 +1,29 @@
 package app.service;
 
 import app.dto.ConsertoDTO;
+import app.dto.ConsertoResumoDTO;
 import app.dto.MecanicoDTO;
 import app.dto.VeiculoDTO;
 import app.entity.Conserto;
 import app.entity.Mecanico;
 import app.entity.Veiculo;
+import app.repository.ConsertoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import app.repository.ConsertoRepository;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ConsertoService {
+
     private final ConsertoRepository consertoRepository;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public ConsertoDTO create(ConsertoDTO dto) {
         Conserto conserto = toEntity(dto);
@@ -26,7 +31,6 @@ public class ConsertoService {
         return toDTO(saved);
     }
 
-    // GET ONE - Buscar por ID
     public ConsertoDTO findById(Long id) {
         Conserto conserto = consertoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
@@ -35,15 +39,23 @@ public class ConsertoService {
         return toDTO(conserto);
     }
 
-    public List<ConsertoDTO> findAll() {
-        return consertoRepository.findAll()
-                .stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
+    public Page<ConsertoDTO> findAll(Pageable pageable) {
+        return consertoRepository.findAll(pageable)
+                .map(this::toDTO);
     }
 
-    // Mappers
+    public List<ConsertoResumoDTO> findAllResumo() {
+        return consertoRepository.findAll()
+                .stream()
+                .map(this::toResumoDTO)
+                .toList();
+    }
+
     private MecanicoDTO toDTOMecanico(Mecanico mecanico) {
+        if (mecanico == null) {
+            return null;
+        }
+
         return new MecanicoDTO(
                 mecanico.getNome(),
                 mecanico.getAnosDeExperiencia()
@@ -51,6 +63,10 @@ public class ConsertoService {
     }
 
     private Mecanico toEntityMecanico(MecanicoDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
         return new Mecanico(
                 dto.nome(),
                 dto.anosDeExperiencia()
@@ -58,6 +74,10 @@ public class ConsertoService {
     }
 
     private VeiculoDTO toDTOVeiculo(Veiculo veiculo) {
+        if (veiculo == null) {
+            return null;
+        }
+
         return new VeiculoDTO(
                 veiculo.getPlaca(),
                 veiculo.getMarca(),
@@ -67,7 +87,11 @@ public class ConsertoService {
         );
     }
 
-    private Veiculo toEntityVeiculo(VeiculoDTO dto){
+    private Veiculo toEntityVeiculo(VeiculoDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
         return new Veiculo(
                 dto.placa(),
                 dto.marca(),
@@ -78,23 +102,58 @@ public class ConsertoService {
     }
 
     private ConsertoDTO toDTO(Conserto conserto) {
+        if (conserto == null) {
+            return null;
+        }
+
         return new ConsertoDTO(
                 conserto.getId(),
-                conserto.getDataEntrada().toString(),
-                conserto.getDataSaida().toString(),
+                formatarData(conserto.getDataEntrada()),
+                formatarData(conserto.getDataSaida()),
                 toDTOMecanico(conserto.getMecanicoResposavel()),
                 toDTOVeiculo(conserto.getVeiculo())
         );
     }
 
     private Conserto toEntity(ConsertoDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
         return new Conserto(
                 dto.id(),
-                LocalDate.parse(dto.dataEntrada()),
-                LocalDate.parse(dto.dataSaida()),
+                parseData(dto.dataEntrada()),
+                parseData(dto.dataSaida()),
                 toEntityMecanico(dto.mecanicoResponsavel()),
                 toEntityVeiculo(dto.veiculo())
         );
     }
 
+    private ConsertoResumoDTO toResumoDTO(Conserto conserto) {
+        if (conserto == null) {
+            return null;
+        }
+
+        return new ConsertoResumoDTO(
+                formatarData(conserto.getDataEntrada()),
+                formatarData(conserto.getDataSaida()),
+                conserto.getMecanicoResposavel() != null
+                        ? conserto.getMecanicoResposavel().getNome()
+                        : null,
+                conserto.getVeiculo() != null
+                        ? conserto.getVeiculo().getMarca()
+                        : null,
+                conserto.getVeiculo() != null
+                        ? conserto.getVeiculo().getModelo()
+                        : null
+        );
+    }
+
+    private LocalDate parseData(String data) {
+        return LocalDate.parse(data, FORMATTER);
+    }
+
+    private String formatarData(LocalDate data) {
+        return data.format(FORMATTER);
+    }
 }
