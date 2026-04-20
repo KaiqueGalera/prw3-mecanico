@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import app.repository.ConsertoRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -77,8 +78,8 @@ public class ConsertoService {
     private ConsertoDTO toDTO(Conserto conserto) {
         return new ConsertoDTO(
                 conserto.getId(),
-                conserto.getDataEntrada(),
-                conserto.getDataSaida(),
+                conserto.getDataEntrada().toString(),
+                conserto.getDataSaida().toString(),
                 toDTOMecanico(conserto.getMecanicoResposavel()),
                 toDTOVeiculo(conserto.getVeiculo())
         );
@@ -87,8 +88,8 @@ public class ConsertoService {
     private Conserto toEntity(ConsertoDTO dto) {
         return new Conserto(
                 dto.id(),
-                dto.dataEntrada(),
-                dto.dataSaida(),
+                LocalDate.parse(dto.dataEntrada()),
+                LocalDate.parse(dto.dataSaida()),
                 toEntityMecanico(dto.mecanicoResponsavel()),
                 toEntityVeiculo(dto.veiculo())
         );

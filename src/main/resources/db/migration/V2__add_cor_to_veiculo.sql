@@ -1,0 +1,2 @@
+ALTER TABLE tb_conserto
+ADD COLUMN cor VARCHAR(50);
