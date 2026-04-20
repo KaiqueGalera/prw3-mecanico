@@ -14,11 +14,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tb_veiculo")
 public class Veiculo {
-    @Id
-    private Long id;
     private String placa;
     private String marca;
     private String modelo;

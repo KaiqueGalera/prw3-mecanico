@@ -1,7 +1,11 @@
 package app.service;
 
 import app.dto.ConsertoDTO;
+import app.dto.MecanicoDTO;
+import app.dto.VeiculoDTO;
 import app.entity.Conserto;
+import app.entity.Mecanico;
+import app.entity.Veiculo;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,13 +41,46 @@ public class ConsertoService {
                 .collect(Collectors.toList());
     }
 
+    // Mappers
+    private MecanicoDTO toDTOMecanico(Mecanico mecanico) {
+        return new MecanicoDTO(
+                mecanico.getNome(),
+                mecanico.getAnosDeExperiencia()
+        );
+    }
+
+    private Mecanico toEntityMecanico(MecanicoDTO dto) {
+        return new Mecanico(
+                dto.nome(),
+                dto.anosDeExperiencia()
+        );
+    }
+
+    private VeiculoDTO toDTOVeiculo(Veiculo veiculo) {
+        return new VeiculoDTO(
+                veiculo.getPlaca(),
+                veiculo.getMarca(),
+                veiculo.getModelo(),
+                veiculo.getAno()
+        );
+    }
+
+    private Veiculo toEntityVeiculo(VeiculoDTO dto){
+        return new Veiculo(
+                dto.placa(),
+                dto.marca(),
+                dto.modelo(),
+                dto.ano()
+        );
+    }
+
     private ConsertoDTO toDTO(Conserto conserto) {
         return new ConsertoDTO(
                 conserto.getId(),
                 conserto.getDataEntrada(),
                 conserto.getDataSaida(),
-                conserto.getMecanicoResposavel(),
-                conserto.getVeiculo()
+                toDTOMecanico(conserto.getMecanicoResposavel()),
+                toDTOVeiculo(conserto.getVeiculo())
         );
     }
 
@@ -52,8 +89,8 @@ public class ConsertoService {
                 dto.id(),
                 dto.dataEntrada(),
                 dto.dataSaida(),
-                dto.mecanicoResposavel(),
-                dto.veiculo()
+                toEntityMecanico(dto.mecanicoResponsavel()),
+                toEntityVeiculo(dto.veiculo())
         );
     }
 

@@ -12,11 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tb_mecanico")
 public class Mecanico {
-    @Id
-    private Long id;
     private String nome;
     private int anosDeExperiencia;
 }

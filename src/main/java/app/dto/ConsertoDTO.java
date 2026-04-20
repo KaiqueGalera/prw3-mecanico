@@ -9,7 +9,7 @@ public record ConsertoDTO(
         Long id,
         LocalDate dataEntrada,
         LocalDate dataSaida,
-        Mecanico mecanicoResposavel,
-        Veiculo veiculo
+        MecanicoDTO mecanicoResponsavel,
+        VeiculoDTO veiculo
 ) {
 }
