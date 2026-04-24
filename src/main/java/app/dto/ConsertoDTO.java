@@ -1,11 +1,7 @@
 package app.dto;
 
-import app.entity.Mecanico;
-import app.entity.Veiculo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-
-import java.time.LocalDate;
 
 public record ConsertoDTO(
         Long id,

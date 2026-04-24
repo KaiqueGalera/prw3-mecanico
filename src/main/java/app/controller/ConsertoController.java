@@ -3,6 +3,7 @@ package app.controller;
 import app.dto.ConsertoDTO;
 import app.dto.ConsertoResumoDTO;
 import app.service.ConsertoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ public class ConsertoController {
     private final ConsertoService consertoService;
 
     @PostMapping
+    @Transactional
     public ConsertoDTO create(@RequestBody @Valid ConsertoDTO dto) {
         return consertoService.create(dto);
     }

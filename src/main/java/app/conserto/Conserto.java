@@ -1,9 +1,8 @@
-package app.entity;
+package app.conserto;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import app.mecanico.Mecanico;
+import app.veiculo.Veiculo;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +12,11 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tb_conserto")
+@Entity(name = "Conserto")
+@Table(name = "consertos")
 public class Conserto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
