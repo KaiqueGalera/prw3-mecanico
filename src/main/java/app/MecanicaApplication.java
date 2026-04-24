@@ -8,6 +8,8 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 @EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class MecanicaApplication {
     public static void main(String[] args) {
+        // Kaique Dias Galera e Matheus Gabriel Farias
+
         SpringApplication.run(MecanicaApplication.class, args);
     }
 }
