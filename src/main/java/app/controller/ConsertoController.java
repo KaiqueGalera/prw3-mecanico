@@ -1,8 +1,8 @@
 package app.controller;
 
-import app.dto.ConsertoDTO;
-import app.dto.ConsertoResumoDTO;
-import app.dto.DadosAtualizacaoConsertoDTO;
+import app.conserto.ConsertoDTO;
+import app.conserto.ConsertoResumoDTO;
+import app.conserto.DadosAtualizacaoConsertoDTO;
 import app.service.ConsertoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

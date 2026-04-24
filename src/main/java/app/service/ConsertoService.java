@@ -1,10 +1,14 @@
 package app.service;
 
-import app.dto.*;
+import app.conserto.ConsertoDTO;
+import app.conserto.ConsertoResumoDTO;
+import app.conserto.DadosAtualizacaoConsertoDTO;
 import app.conserto.Conserto;
 import app.mecanico.Mecanico;
+import app.mecanico.MecanicoDTO;
 import app.veiculo.Veiculo;
 import app.repository.ConsertoRepository;
+import app.veiculo.VeiculoDTO;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package app.dto;
+package app.conserto;
 
 import jakarta.validation.constraints.NotNull;
 

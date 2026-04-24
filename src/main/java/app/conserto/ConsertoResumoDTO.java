@@ -1,4 +1,4 @@
-package app.dto;
+package app.conserto;
 
 public record ConsertoResumoDTO(
         Long id,

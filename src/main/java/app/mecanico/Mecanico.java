@@ -13,7 +13,7 @@ public class Mecanico {
     private String nome;
     private int anosDeExperiencia;
 
-    public Mecanico(DadosMecanico dados) {
+    public Mecanico(MecanicoDTO dados) {
         this.nome = dados.nome();
         this.anosDeExperiencia = dados.anosDeExperiencia();
     }

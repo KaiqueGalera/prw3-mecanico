@@ -1,5 +1,7 @@
-package app.dto;
+package app.conserto;
 
+import app.mecanico.MecanicoDTO;
+import app.veiculo.VeiculoDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 

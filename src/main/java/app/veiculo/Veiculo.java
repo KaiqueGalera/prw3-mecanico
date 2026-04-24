@@ -16,7 +16,7 @@ public class Veiculo {
     private String ano;
     private String cor;
 
-    public Veiculo(DadosVeiculo dados) {
+    public Veiculo(VeiculoDTO dados) {
         this.placa = dados.placa();
         this.marca = dados.marca();
         this.modelo = dados.modelo();
@@ -24,7 +24,7 @@ public class Veiculo {
         this.cor = dados.cor();
     }
 
-    public void atualizarInformacoes(DadosVeiculo dados) {
+    public void atualizarInformacoes(VeiculoDTO dados) {
 
         if (dados.placa() != null) {
             this.placa = dados.placa();
