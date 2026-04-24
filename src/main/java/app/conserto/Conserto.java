@@ -39,7 +39,6 @@ public class Conserto {
             this.dataSaida = novaDataSaida;
         }
 
-        // Repassa a atualização para o objeto embutido (Mecanico)
         if (this.mecanicoResposavel != null) {
             this.mecanicoResposavel.atualizarDados(nomeMecanico, anosExperiencia);
         }

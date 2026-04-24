@@ -35,13 +35,11 @@ public class ConsertoService {
     public ConsertoDTO update(DadosAtualizacaoConsertoDTO dto) {
         Conserto conserto = consertoRepository.getReferenceById(dto.id());
 
-        // Converte a string da data para LocalDate (se ela não for nula)
         LocalDate dataSaidaParsed = null;
         if (dto.dataSaida() != null) {
             dataSaidaParsed = parseData(dto.dataSaida());
         }
 
-        // Chama o método semântico da entidade
         conserto.atualizarInformacoes(dataSaidaParsed, dto.nomeMecanico(), dto.anosDeExperiencia());
 
         return toDTO(conserto);
