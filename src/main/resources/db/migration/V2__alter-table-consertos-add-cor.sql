@@ -1,2 +1,2 @@
-ALTER TABLE tb_conserto
+ALTER TABLE consertos
 ADD COLUMN cor VARCHAR(50);

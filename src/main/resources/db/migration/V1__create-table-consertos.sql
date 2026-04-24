@@ -1,5 +1,5 @@
-CREATE TABLE tb_conserto (
-    id BIGINT NOT NULL,
+CREATE TABLE consertos (
+    id BIGINT AUTO_INCREMENT NOT NULL,
     data_entrada DATE,
     data_saida DATE,
     nome VARCHAR(255),
