@@ -1,6 +1,7 @@
 package app.dto;
 
 public record ConsertoResumoDTO(
+        Long id,
         String dataEntrada,
         String dataSaida,
         String nomeMecanico,

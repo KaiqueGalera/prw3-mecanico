@@ -5,17 +5,23 @@ import jakarta.validation.constraints.Pattern;
 
 public record ConsertoDTO(
         Long id,
+
         @Pattern(
                 regexp = "\\d{2}/\\d{2}/\\d{4}",
-                message = "data de entrada deve estar no formato xx/xx/xxxx")
+                message = "Data de entrada deve estar no formato xx/xx/xxxx")
         String dataEntrada,
+
         @Pattern(
                 regexp = "\\d{2}/\\d{2}/\\d{4}",
-                message = "data de saída deve estar no formato xx/xx/xxxx")
+                message = "Data de saida deve estar no formato xx/xx/xxxx")
         String dataSaida,
+
         @Valid
         MecanicoDTO mecanicoResponsavel,
+
         @Valid
-        VeiculoDTO veiculo
+        VeiculoDTO veiculo,
+
+        Boolean ativo
 ) {
 }
