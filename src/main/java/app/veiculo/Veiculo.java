@@ -1,6 +1,5 @@
 package app.veiculo;
 
-import app.mecanico.DadosMecanico;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

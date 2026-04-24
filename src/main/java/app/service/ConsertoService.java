@@ -1,9 +1,6 @@
 package app.service;
 
-import app.dto.ConsertoDTO;
-import app.dto.ConsertoResumoDTO;
-import app.dto.MecanicoDTO;
-import app.dto.VeiculoDTO;
+import app.dto.*;
 import app.conserto.Conserto;
 import app.mecanico.Mecanico;
 import app.veiculo.Veiculo;
@@ -31,6 +28,26 @@ public class ConsertoService {
         return toDTO(saved);
     }
 
+    public ConsertoDTO update(DadosAtualizacaoConsertoDTO dto) {
+        Conserto conserto = consertoRepository.getReferenceById(dto.id());
+
+        // Converte a string da data para LocalDate (se ela não for nula)
+        LocalDate dataSaidaParsed = null;
+        if (dto.dataSaida() != null) {
+            dataSaidaParsed = parseData(dto.dataSaida());
+        }
+
+        // Chama o método semântico da entidade
+        conserto.atualizarInformacoes(dataSaidaParsed, dto.nomeMecanico(), dto.anosDeExperiencia());
+
+        return toDTO(conserto);
+    }
+
+    public void delete(Long id) {
+        Conserto conserto = consertoRepository.getReferenceById(id);
+        conserto.inativar();
+    }
+
     public ConsertoDTO findById(Long id) {
         Conserto conserto = consertoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
@@ -45,7 +62,7 @@ public class ConsertoService {
     }
 
     public List<ConsertoResumoDTO> findAllResumo() {
-        return consertoRepository.findAll()
+        return consertoRepository.findAllByAtivoTrue()
                 .stream()
                 .map(this::toResumoDTO)
                 .toList();
@@ -111,7 +128,8 @@ public class ConsertoService {
                 formatarData(conserto.getDataEntrada()),
                 formatarData(conserto.getDataSaida()),
                 toDTOMecanico(conserto.getMecanicoResposavel()),
-                toDTOVeiculo(conserto.getVeiculo())
+                toDTOVeiculo(conserto.getVeiculo()),
+                conserto.getAtivo()
         );
     }
 
@@ -125,7 +143,8 @@ public class ConsertoService {
                 parseData(dto.dataEntrada()),
                 parseData(dto.dataSaida()),
                 toEntityMecanico(dto.mecanicoResponsavel()),
-                toEntityVeiculo(dto.veiculo())
+                toEntityVeiculo(dto.veiculo()),
+                true
         );
     }
 
@@ -135,6 +154,7 @@ public class ConsertoService {
         }
 
         return new ConsertoResumoDTO(
+                conserto.getId(),
                 formatarData(conserto.getDataEntrada()),
                 formatarData(conserto.getDataSaida()),
                 conserto.getMecanicoResposavel() != null

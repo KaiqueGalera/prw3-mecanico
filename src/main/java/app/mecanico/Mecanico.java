@@ -18,13 +18,12 @@ public class Mecanico {
         this.anosDeExperiencia = dados.anosDeExperiencia();
     }
 
-    public void atualizarInformacoes(DadosMecanico dados) {
-
-        if (dados.nome() != null) {
-            this.nome = dados.nome();
+    public void atualizarDados(String nome, Integer anosDeExperiencia) {
+        if (nome != null) {
+            this.nome = nome;
         }
-        if (dados.anosDeExperiencia() != null) {
-            this.anosDeExperiencia = dados.anosDeExperiencia();
+        if (anosDeExperiencia != null) {
+            this.anosDeExperiencia = anosDeExperiencia;
         }
     }
 }
